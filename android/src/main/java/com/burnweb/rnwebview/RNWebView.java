@@ -31,15 +31,19 @@ class RNWebView extends WebView implements LifecycleEventListener {
 
     protected class EventWebClient extends WebViewClient {
         public boolean shouldOverrideUrlLoading(WebView view, String url){
-            if(RNWebView.this.getAllowUrlRedirect()) {
-                // do your handling codes here, which url is the requested url
-                // probably you need to open that url rather than redirect:
-                view.loadUrl(url);
+            // click load stop
+            view.stopLoading();
+            return false; 
 
-                return false; // then it is not handled by default action
-            }
+            // if(RNWebView.this.getAllowUrlRedirect()) {
+            //     // do your handling codes here, which url is the requested url
+            //     // probably you need to open that url rather than redirect:
+            //     view.loadUrl(url);
 
-            return super.shouldOverrideUrlLoading(view, url);
+            //     return false; // then it is not handled by default action
+            // }
+
+            // return super.shouldOverrideUrlLoading(view, url);
         }
 
         public void onPageFinished(WebView view, String url) {
